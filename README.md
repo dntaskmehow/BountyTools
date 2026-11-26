@@ -5,6 +5,12 @@
 >
 > Credential-like filenames and APIs in this repository are development/reference code; no embedded secret value was identified. Always use placeholders, redact evidence, and verify secret handling before sharing or deploying.
 
+> Researcher: dontaskmehow
+
+> Disclaimer: “All of my work is for ethical and research purposes. All Code if used is to be used on authorized targets. I’m not responsible for what user’s do with this. Also all code is my PoC and Critique is welcomed. Thank you all for your support.”
+
+> The exploits in this post is licensed under the MIT License (Copyright © 2026 dontaskmehow). The written article text is licensed under CC BY 4.0. 
+
 A structured collection of Python and shell scripts for authorized reconnaissance, scanning, fuzzing, and exploitation practice. The toolkit is organized to help beginners understand which phase a [...]
 
 # 100 Of My Own Bug Bounty Tools [Toolkit] Not Saturated - All My original code. Ive Used Them All, Ive made $ With Them All.
