@@ -1,4 +1,4 @@
-# Bug Bounty Toolkit  100 TOTAL Tools
+# Bug Bounty Toolkit - 100 TOTAL Tools
 
 A structured collection of Python and shell scripts for authorized reconnaissance, scanning, fuzzing, and exploitation practice. The toolkit is organized to help beginners understand which phase a script belongs to, what it does, and how to run it safely.
 
