@@ -1,0 +1,17 @@
+https://bitso.com/blog/understanding-crypto-metrics/
+https://status.bitso.com/api/v2/status.json
+https://bitso.com/blog/understanding-crypto-metrics/gtm.js
+https://assets-prod.bitso.com/api/v2/status.json
+https://assets-prod.bitso.com/api/v2/api/v2/status.json
+https://assets-prod.bitso.com/api/v2/api/v2/api/v2/api/v2/status.json
+https://robinhood.com/us/en/support/_next/static/BiiQiRuHTAaM6JXq2Z_Li/static/chunks/pages/healthcheck-3d231d2306bfc90be864.js
+https://robinhood.com/articles/platinum-health-wellness/
+https://cdn.robinhood.com/assets/robinhood/legal/California_Consumer_Privacy_Act_CCPA_Metrics
+https://www.functionhealth.com/
+https://www.google-analytics.com/analytics_debug.js
+https://robinhood.com/us/en/support/articles/platinum-health-wellness/
+https://ec.instapagemetrics.com
+https://cdn.instapagemetrics.com/t/js/3/it.js
+https://transparency-in-coverage.collectivehealth.com/index.html
+https://robinhood.com/us/en/careers/blog/resolving-mixed-signals-in-robinhood-experimentation-composite-metrics-methodology/
+https://robinhood.com/us/en/careers/blog/resolving-mixed-signals-in-robinhood-experimentation-composite-metrics-methodology

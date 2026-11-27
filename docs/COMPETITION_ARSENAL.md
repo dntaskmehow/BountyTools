@@ -108,6 +108,36 @@ jq -r '[.url, .status_code, .title] | @tsv' "$OUT/loot/httpx.json" 2>/dev/null |
 | searchsploit | `searchsploit wordpress` |
 | linpeas | `bash linpeas.sh` (on authorized shells only) |
 
+## `inspect.txt` triage (thetshas `master/inspect.txt`)
+
+URL dumps from crawls (e.g. Bitso/Robinhood asset links) must be filtered before testing. **Only probe hosts your program authorizes.**
+
+```bash
+export INSPECT_FILE="/path/to/thetshas/master/inspect.txt"
+python3 scripts/analyze_inspect_urls.py "$INSPECT_FILE" -o docs/generated
+bash docs/generated/inspect_critical_commands.sh
+```
+
+Critical buckets written:
+
+| File | Role |
+|------|------|
+| `inspect_critical_api.txt` | `/api/`, versioned API paths |
+| `inspect_critical_auth.txt` | login, oauth, session |
+| `inspect_critical_fintech.txt` | wallet, transfer, ticker, transaction |
+| `inspect_critical_params.txt` | URLs with query parameters |
+| `inspect_critical_encoding.txt` | `%5C`, `\u003` path anomalies |
+| `inspect_critical_cloudflare.txt` | `cdn-cgi/challenge` noise / WAF |
+| `inspect_critical_commands.sh` | httpx, nuclei, sqlmap, dalfox, loot grep |
+
+See `inspect_summary.txt` for host counts. Social/CDN hosts (LinkedIn, YouTube, etc.) are skipped unless `--include-third-party`.
+
+Regenerate the main command deck after triage:
+
+```bash
+python3 scripts/generate_competition_commands.py
+```
+
 ## Not included
 
 Phishing campaigns, Wi-Fi captive portals, unauthorized mass credential stuffing, and automatic takeover frameworks against third-party production systems are out of band for this deck. Use competition rules and human judgment.

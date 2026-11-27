@@ -145,6 +145,15 @@ def emit(lines: list[str]) -> None:
             seen.add(line)
             unique.append(line)
 
+    inspect_cmds = ROOT / "docs" / "generated" / "inspect_critical_commands.sh"
+    if inspect_cmds.is_file():
+        body = inspect_cmds.read_text(encoding="utf-8")
+        for line in body.splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and line not in seen:
+                seen.add(line)
+                unique.append(line)
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(HEADER + "\n".join(unique) + f"\n# total_commands: {len(unique)}\n", encoding="utf-8")
     print(f"wrote {len(unique)} commands -> {OUT}")

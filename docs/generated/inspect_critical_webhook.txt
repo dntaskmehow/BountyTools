@@ -1,0 +1,4 @@
+https://www.recaptcha.net/recaptcha/enterprise.js?onload=onloadCallback&render=explicit
+https://status.bitso.com/subscriptions/webhook.json
+https://assets-prod.bitso.com/oidc-callback.html
+https://cdn.robinhood.com/oauth2/apple/callback

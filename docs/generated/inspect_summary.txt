@@ -1,0 +1,36 @@
+# inspect source: /home/ubuntu/.cursor/projects/agent-repos-tmp-6d4cc0096b90288b/agent-tools/5d584b33-bf33-45b6-9546-99b9649d48cd.txt
+# skipped third-party hosts lines: 15711
+# top hosts:
+#   robinhood.com: 61585
+#   bitso.com: 25443
+#   cdn.robinhood.com: 10077
+#   assets-prod.bitso.com: 3317
+#   www.linkedin.com: 2880
+#   substackcdn.com: 2576
+#   x.com: 1759
+#   www.youtube.com: 1710
+#   mobileassets.bitso.com: 1321
+#   www.facebook.com: 1277
+#   www.instagram.com: 1245
+#   www.w3.org: 1232
+#   docs.robinhood.com: 878
+#   twitter.com: 849
+#   t.me: 844
+#   support.bitso.com: 832
+#   instagram.com: 822
+#   www.sipc.org: 814
+#   www.tiktok.com: 777
+#   www.googletagmanager.com: 753
+# bucket counts:
+#   critical_api: 52
+#   critical_graphql: 0
+#   critical_auth: 245
+#   critical_webhook: 4
+#   critical_admin: 1
+#   critical_config: 0
+#   critical_debug: 17
+#   critical_upload: 8
+#   critical_fintech: 291
+#   critical_params: 1651
+#   critical_encoding: 135
+#   critical_cloudflare: 555
